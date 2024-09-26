@@ -554,7 +554,7 @@
 			);
 			currentVersion = 9982FD982CA5549500E5343A /* DataStorage.xcdatamodel */;
 			name = DataStorage.xcdatamodeld;
-			path = /Users/lucifer/Documents/SwiftProjects/App958UIKit/App958UIKit/Storage/DataStorage.xcdatamodeld;
+			path = DataStorage.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
