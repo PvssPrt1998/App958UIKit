@@ -43,6 +43,7 @@
 		9982FDB82CA5561500E5343A /* SelectedBall+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982FDB42CA5561500E5343A /* SelectedBall+CoreDataProperties.swift */; };
 		9982FDB92CA5561500E5343A /* SelectedCoin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982FDB52CA5561500E5343A /* SelectedCoin+CoreDataClass.swift */; };
 		9982FDBA2CA5561500E5343A /* SelectedCoin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982FDB62CA5561500E5343A /* SelectedCoin+CoreDataProperties.swift */; };
+		9982FDBC2CA586A900E5343A /* codemagic.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 9982FDBB2CA586A800E5343A /* codemagic.yaml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		9982FDB42CA5561500E5343A /* SelectedBall+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedBall+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9982FDB52CA5561500E5343A /* SelectedCoin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedCoin+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9982FDB62CA5561500E5343A /* SelectedCoin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedCoin+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9982FDBB2CA586A800E5343A /* codemagic.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = codemagic.yaml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 		9982FD532CA1B39B00E5343A /* App958UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				9982FDBB2CA586A800E5343A /* codemagic.yaml */,
 				9982FD922CA551C900E5343A /* Storage */,
 				9982FD8E2CA43C8900E5343A /* Info.plist */,
 				9982FD902CA440F500E5343A /* FugazOne-Regular.ttf */,
@@ -266,6 +269,7 @@
 				9982FD822CA30EC400E5343A /* platformAndWheelWin.mp3 in Resources */,
 				9982FD8F2CA43FFC00E5343A /* FasterOne-Regular.ttf in Resources */,
 				9982FD842CA30EC400E5343A /* wheelLose.mp3 in Resources */,
+				9982FDBC2CA586A900E5343A /* codemagic.yaml in Resources */,
 				9982FD852CA30EC400E5343A /* backgroundSound.mp3 in Resources */,
 				9982FD602CA1B39B00E5343A /* Base in Resources */,
 				9982FD622CA1B39E00E5343A /* Assets.xcassets in Resources */,
@@ -474,7 +478,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Nevermind.App958UIKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.noa.b0t4n0p0lytgr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -507,7 +511,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Nevermind.App958UIKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.noa.b0t4n0p0lytgr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
