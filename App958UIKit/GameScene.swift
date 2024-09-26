@@ -1,10 +1,3 @@
-//
-//  GameScene.swift
-//  App958UIKit
-//
-//  Created by Николай Щербаков on 23.09.2024.
-//
-
 import SpriteKit
 import GameplayKit
 
