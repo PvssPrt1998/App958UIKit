@@ -256,7 +256,10 @@ class GameScene3: SKScene {
     }
     
     private func configureExitButton() {
-        let safeAreaTop = self.view?.window?.windowScene?.windows.first?.safeAreaInsets.top ?? 16
+        var safeAreaTop = self.view?.window?.windowScene?.windows.first?.safeAreaInsets.top ?? 54
+        if UIDevice.current.name.contains("SE") {
+            safeAreaTop = 16
+        }
         //exitButton.size = CGSize(width: 164, height: 40)
         exitButton.position = CGPoint(x: self.frame.midX, y: self.frame.height - safeAreaTop - 20)
         exitButton.name = "ExitButton"
@@ -273,7 +276,10 @@ class GameScene3: SKScene {
     }
     
     private func configureGameStatusBar() {
-        let safeAreaTop = self.view?.window?.windowScene?.windows.first?.safeAreaInsets.top ?? 16
+        var safeAreaTop = self.view?.window?.windowScene?.windows.first?.safeAreaInsets.top ?? 54
+        if UIDevice.current.name.contains("SE") {
+            safeAreaTop = 16
+        }
         gameStatusBar.position = CGPoint(x: self.frame.midX, y: self.frame.height - safeAreaTop - 74)
         gameStatusBar.name = "GameStatusBar"
         gameStatusBar.zPosition = 3

@@ -300,7 +300,10 @@ class ShopScene: SKScene {
     }
     
     private func configureExitButton() {
-        let safeAreaTop = self.view?.window?.windowScene?.windows.first?.safeAreaInsets.top ?? 16
+        var safeAreaTop = self.view?.window?.windowScene?.windows.first?.safeAreaInsets.top ?? 54
+        if UIDevice.current.name.contains("SE") {
+            safeAreaTop = 16
+        }
         exitButton.position = CGPoint(x: self.frame.midX, y: self.size.height - safeAreaTop - 30)
         exitButton.name = "ExitButton"
         self.addChild(exitButton)

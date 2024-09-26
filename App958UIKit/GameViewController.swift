@@ -8,7 +8,6 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             let scene = MenuScene(size: self.view.bounds.size, gameModel: gameModel)
