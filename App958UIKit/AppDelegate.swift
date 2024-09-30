@@ -1,17 +1,9 @@
-//
-//  AppDelegate.swift
-//  App958UIKit
-//
-//  Created by Николай Щербаков on 23.09.2024.
-//
-
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

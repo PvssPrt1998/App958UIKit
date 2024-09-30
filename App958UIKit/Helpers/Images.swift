@@ -65,5 +65,15 @@ enum Images: String {
     
     case NewGame
     case FallingCoins
+    
+    case map
+    case miniMap1
+    case miniMap2
+    case miniMap3
+    case miniMap4
+    
+    case ChooseButton
+    
+    case lock
 }
 

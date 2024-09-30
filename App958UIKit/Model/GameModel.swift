@@ -2,6 +2,13 @@ import Foundation
 
 final class GameModel {
     
+    var maps: Array<Map> = [
+        Map(id: 0, available: true),
+        Map(id: 1, available: false),
+        Map(id: 2, available: false),
+        Map(id: 3, available: false)
+    ]
+    
     let lstr = Lstr()
     
     var selectedBallIndex: Int = 0
@@ -44,6 +51,11 @@ final class GameModel {
                 coinArray[IB.0].available = IB.1
             }
         }
+        if let maps = try? lstr.fetchMaps() {
+            maps.forEach { IB in
+                self.maps[IB.0].available = IB.1
+            }
+        }
     }
     
     func saveBalance(_ balance: Int) {
@@ -70,6 +82,13 @@ final class GameModel {
         coinArray[index].available = true
         lstr.createOrEditCoinAvailable(coinArray[index])
     }
+    
+    func makeMapAvailableIfNeeded(_ id: Int) {
+        if !maps[id].available {
+            maps[id].available = true
+            lstr.createOrEditMap(maps[id])
+        }
+    }
 }
 
 class Item {
@@ -92,4 +111,14 @@ class Coin: Item {
 
 class Ball: Item {
     
+}
+
+class Map {
+    let id: Int
+    var available: Bool
+    
+    init(id: Int, available: Bool) {
+        self.id = id
+        self.available = available
+    }
 }

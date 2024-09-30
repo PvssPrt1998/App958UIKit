@@ -2,10 +2,6 @@ import SpriteKit
 
 class GameScene4: SKScene {
     
-    deinit {
-        print("GameScene4deinit")
-    }
-    
     let gameModel: GameModel
     
     var fallingCoins = SKSpriteNode(texture: SKTexture(imageNamed: Images.FallingCoins.rawValue))
@@ -81,7 +77,7 @@ class GameScene4: SKScene {
     
     init(size: CGSize, gameModel: GameModel) {
         self.gameModel = gameModel
-        gameModel.hp = 3
+        gameModel.makeMapAvailableIfNeeded(3)
         self.ball = SKSpriteNode(texture: SKTexture(imageNamed: gameModel.ballsArray[gameModel.selectedBallIndex].imageTitle))
         self.coin1 = SKSpriteNode(texture: SKTexture(imageNamed: gameModel.coinArray[gameModel.selectedCoinIndex].imageTitle))
         self.coin2 = SKSpriteNode(texture: SKTexture(imageNamed: gameModel.coinArray[gameModel.selectedCoinIndex].imageTitle))
@@ -246,12 +242,14 @@ class GameScene4: SKScene {
     }
     
     private func configureHearts() {
-        heart1.position = CGPoint(x: size.width * 0.3, y: size.height * 0.49 + platformsArray[0].size.height * 0.25)
-        heart1.name = "heart3"
+        heart1.position =  CGPoint(x: size.width * 0.37, y: size.height * 0.71 + platformsArray[0].size.height * 0.25)
+        //CGPoint(x: size.width * 0.3, y: size.height * 0.49 + platformsArray[0].size.height * 0.25)
+        heart1.name = "heart1"
         heart1.zPosition = 2
         addChild(heart1)
-        heart2.position = CGPoint(x: size.width * 0.15, y: size.height * 0.1 + platformsArray[0].size.height * 0.25)
-        heart2.name = "heart7"
+        heart2.position = CGPoint(x: size.width * 0.4, y: size.height * 0.37 + platformsArray[0].size.height * 0.25)
+        //CGPoint(x: size.width * 0.15, y: size.height * 0.1 + platformsArray[0].size.height * 0.25)
+        heart2.name = "heart5"
         heart2.zPosition = 2
         addChild(heart2)
     }
@@ -361,16 +359,18 @@ class GameScene4: SKScene {
     }
     
     private func configureBomb1() {
-        bomb1.position = CGPoint(x: size.width * 0.37, y: size.height * 0.71 + platformsArray[0].size.height * 0.35)
-        bomb1.name = "bomb1"
+        bomb1.position = CGPoint(x: size.width * 0.3, y: size.height * 0.49 + platformsArray[0].size.height * 0.35)
+        //CGPoint(x: size.width * 0.37, y: size.height * 0.71 + platformsArray[0].size.height * 0.35)
+        bomb1.name = "bomb3"
         bomb1.zPosition = 2
         addChild(bomb1)
     }
     
     private func configureBomb2() {
         bomb2.zPosition = 2
-        bomb2.name = "bomb5"
-        bomb2.position = CGPoint(x: size.width * 0.4, y: size.height * 0.37 + platformsArray[0].size.height * 0.35)
+        bomb2.name = "bomb7"
+        bomb2.position = CGPoint(x: size.width * 0.15, y: size.height * 0.1 + platformsArray[0].size.height * 0.35)
+        //CGPoint(x: size.width * 0.4, y: size.height * 0.37 + platformsArray[0].size.height * 0.35)
         addChild(bomb2)
     }
     
@@ -519,18 +519,18 @@ class GameScene4: SKScene {
                 self.incrementHP()
                 self.heart1.removeFromParent()
             }
-            addCoinLabel.position = CGPoint(x: size.width * 0.3, y: size.height * 0.49 + platformsArray[0].size.height * 0.25)
+            addCoinLabel.position = CGPoint(x: size.width * 0.37, y: size.height * 0.71 + platformsArray[0].size.height * 0.25)
             addCoinLabel.alpha = 1
-            addCoinLabel.run(SKAction.sequence([SKAction.move(to: CGPoint(x: size.width * 0.3, y: size.height * 0.49 + platformsArray[0].size.height * 0.25 + 50), duration: 0.5), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
+            addCoinLabel.run(SKAction.sequence([SKAction.move(to: CGPoint(x: size.width * 0.37, y: size.height * 0.71 + platformsArray[0].size.height * 0.25 + 50), duration: 0.5), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
         }
         if "heart\(ballIndex)" == heart2.name && heart2.parent != nil {
             heart2.run(SKAction.fadeAlpha(to: 0, duration: 0.5)) {
                 self.incrementHP()
                 self.heart2.removeFromParent()
             }
-            addCoinLabel.position = CGPoint(x: size.width * 0.15, y: size.height * 0.1 + platformsArray[0].size.height * 0.25)
+            addCoinLabel.position = CGPoint(x: size.width * 0.4, y: size.height * 0.37 + platformsArray[0].size.height * 0.25)
             addCoinLabel.alpha = 1
-            addCoinLabel.run(SKAction.sequence([SKAction.move(to: CGPoint(x: size.width * 0.15, y: size.height * 0.1 + platformsArray[0].size.height * 0.25 + 50), duration: 0.5), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
+            addCoinLabel.run(SKAction.sequence([SKAction.move(to: CGPoint(x: size.width * 0.4, y: size.height * 0.37 + platformsArray[0].size.height * 0.25 + 50), duration: 0.5), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
         }
     }
     
@@ -784,7 +784,7 @@ class GameScene4: SKScene {
         
         if node.name == "GameOverNGButton" {
             let transition = SKTransition.moveIn(with: .down, duration: 0.2)
-            let menuScene = GameScene1(size: self.size, gameModel: self.gameModel)
+            let menuScene = GameScene1(size: self.size, gameModel: self.gameModel, newGame: true)
             menuScene.scaleMode = .aspectFill
             guard self.scene != nil else { return }
             self.scene!.view?.presentScene(menuScene, transition: transition)

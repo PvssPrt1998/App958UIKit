@@ -86,7 +86,6 @@ class MenuScene: SKScene {
                 guard self.scene != nil else { return }
                 self.scene!.view?.presentScene(shopScene, transition: transition)
             }
-            
         }
         if node.name == "SettingsButton" {
             let transition = SKTransition.crossFade(withDuration: 0.5)

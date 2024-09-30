@@ -2,10 +2,6 @@ import SpriteKit
 
 class GameScene2: SKScene {
     
-    deinit {
-        print("GameScene2deinit")
-    }
-    
     let gameModel: GameModel
     
     var bombSound = SKAction.playSoundFileNamed("bombExplosion.mp3", waitForCompletion: false)
@@ -72,7 +68,7 @@ class GameScene2: SKScene {
     
     init(size: CGSize, gameModel: GameModel) {
         self.gameModel = gameModel
-        gameModel.hp = 3
+        gameModel.makeMapAvailableIfNeeded(1)
         self.ball = SKSpriteNode(texture: SKTexture(imageNamed: gameModel.ballsArray[gameModel.selectedBallIndex].imageTitle))
         self.coin1 = SKSpriteNode(texture: SKTexture(imageNamed: gameModel.coinArray[gameModel.selectedCoinIndex].imageTitle))
         self.coin2 = SKSpriteNode(texture: SKTexture(imageNamed: gameModel.coinArray[gameModel.selectedCoinIndex].imageTitle))
@@ -197,23 +193,25 @@ class GameScene2: SKScene {
         heart1.name = "heart3"
         heart1.zPosition = 2
         addChild(heart1)
-        heart2.position = CGPoint(x: size.width * 0.15, y: size.height * 0.1 + platformsArray[0].size.height * 0.25)
-        heart2.name = "heart7"
+        heart2.position = CGPoint(x: size.width * 0.15, y: size.height * 0.3 + platformsArray[0].size.height * 0.25)
+        heart2.name = "heart6"
         heart2.zPosition = 2
         addChild(heart2)
     }
     
     private func configureCoins() {
-        coin1.position = CGPoint(x: size.width * 0.14, y: size.height * 0.6 + platformsArray[0].size.height * 0.25)
-        coin1.name = "coin2"
+        coin1.position = CGPoint(x: size.width * 0.37, y: size.height * 0.71 + platformsArray[0].size.height * 0.25)
+        //
+        coin1.name = "coin1"
         coin1.zPosition = 2
         addChild(coin1)
-        coin2.position = CGPoint(x: size.width * 0.65, y: size.height * 0.45 + platformsArray[0].size.height * 0.25)
-        coin2.name = "coin4"
+        coin2.position =  CGPoint(x: size.width * 0.4, y: size.height * 0.37 + platformsArray[0].size.height * 0.25)
+        coin2.name = "coin5"
         coin2.zPosition = 2
         addChild(coin2)
-        coin3.position = CGPoint(x: size.width * 0.15, y: size.height * 0.3 + platformsArray[0].size.height * 0.25)
-        coin3.name = "coin6"
+        coin3.position = CGPoint(x: size.width * 0.15, y: size.height * 0.1 + platformsArray[0].size.height * 0.25)
+        //CGPoint(x: size.width * 0.15, y: size.height * 0.3 + platformsArray[0].size.height * 0.25)
+        coin3.name = "coin7"
         coin3.zPosition = 2
         addChild(coin3)
     }
@@ -308,16 +306,16 @@ class GameScene2: SKScene {
     }
     
     private func configureBomb1() {
-        bomb1.position = CGPoint(x: size.width * 0.37, y: size.height * 0.71 + platformsArray[0].size.height * 0.35)
-        bomb1.name = "bomb1"
+        bomb1.position = CGPoint(x: size.width * 0.14, y: size.height * 0.6 + platformsArray[0].size.height * 0.35)
+        bomb1.name = "bomb2"
         bomb1.zPosition = 2
         addChild(bomb1)
     }
     
     private func configureBomb2() {
         bomb2.zPosition = 2
-        bomb2.name = "bomb5"
-        bomb2.position = CGPoint(x: size.width * 0.4, y: size.height * 0.37 + platformsArray[0].size.height * 0.35)
+        bomb2.name = "bomb4"
+        bomb2.position = CGPoint(x: size.width * 0.65, y: size.height * 0.45 + platformsArray[0].size.height * 0.35)
         addChild(bomb2)
     }
     
@@ -426,9 +424,10 @@ class GameScene2: SKScene {
                 self.incrementBalance()
                 self.coin1.removeFromParent()
             }
-            addCoinLabel.position = CGPoint(x: size.width * 0.14, y: size.height * 0.6 + platformsArray[0].size.height * 0.25)
+            addCoinLabel.position = CGPoint(x: size.width * 0.37, y: size.height * 0.71 + platformsArray[0].size.height * 0.25)
+            //CGPoint(x: size.width * 0.14, y: size.height * 0.6 + platformsArray[0].size.height * 0.25)
             addCoinLabel.alpha = 1
-            addCoinLabel.run(SKAction.sequence([SKAction.move(to: CGPoint(x: size.width * 0.14, y: size.height * 0.6 + platformsArray[0].size.height * 0.25 + 50), duration: 0.5), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
+            addCoinLabel.run(SKAction.sequence([SKAction.move(to: CGPoint(x: size.width * 0.37, y: size.height * 0.71 + platformsArray[0].size.height * 0.25 + 50), duration: 0.5), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
         }
         
         if "coin\(ballIndex)" == coin2.name && coin2.parent != nil {
@@ -437,9 +436,9 @@ class GameScene2: SKScene {
                 self.incrementBalance()
                 self.coin2.removeFromParent()
             }
-            addCoinLabel.position = CGPoint(x: size.width * 0.65, y: size.height * 0.45 + platformsArray[0].size.height * 0.25)
+            addCoinLabel.position = CGPoint(x: size.width * 0.4, y: size.height * 0.37 + platformsArray[0].size.height * 0.25)
             addCoinLabel.alpha = 1
-            addCoinLabel.run(SKAction.sequence([SKAction.move(to: CGPoint(x: size.width * 0.65, y: size.height * 0.45 + platformsArray[0].size.height * 0.25 + 50), duration: 0.5), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
+            addCoinLabel.run(SKAction.sequence([SKAction.move(to: CGPoint(x: size.width * 0.4, y: size.height * 0.37 + platformsArray[0].size.height * 0.25 + 50), duration: 0.5), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
         }
         
         if "coin\(ballIndex)" == coin3.name && coin3.parent != nil {
@@ -448,9 +447,10 @@ class GameScene2: SKScene {
                 self.incrementBalance()
                 self.coin3.removeFromParent()
             }
-            addCoinLabel.position = CGPoint(x: size.width * 0.15, y: size.height * 0.3 + platformsArray[0].size.height * 0.25)
+            addCoinLabel.position = CGPoint(x: size.width * 0.15, y: size.height * 0.1 + platformsArray[0].size.height * 0.25)
+            //CGPoint(x: size.width * 0.15, y: size.height * 0.3 + platformsArray[0].size.height * 0.25)
             addCoinLabel.alpha = 1
-            addCoinLabel.run(SKAction.sequence([SKAction.move(to: CGPoint(x: size.width * 0.15, y: size.height * 0.3 + platformsArray[0].size.height * 0.25 + 50), duration: 0.5), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
+            addCoinLabel.run(SKAction.sequence([SKAction.move(to: CGPoint(x: size.width * 0.15, y: size.height * 0.1 + platformsArray[0].size.height * 0.25 + 50), duration: 0.5), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
         }
     }
     
@@ -469,9 +469,10 @@ class GameScene2: SKScene {
                 self.incrementHP()
                 self.heart2.removeFromParent()
             }
-            addCoinLabel.position = CGPoint(x: size.width * 0.15, y: size.height * 0.1 + platformsArray[0].size.height * 0.25)
+            addCoinLabel.position = CGPoint(x: size.width * 0.15, y: size.height * 0.3 + platformsArray[0].size.height * 0.25)
+            //CGPoint(x: size.width * 0.15, y: size.height * 0.1 + platformsArray[0].size.height * 0.25)
             addCoinLabel.alpha = 1
-            addCoinLabel.run(SKAction.sequence([SKAction.move(to: CGPoint(x: size.width * 0.15, y: size.height * 0.1 + platformsArray[0].size.height * 0.25 + 50), duration: 0.5), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
+            addCoinLabel.run(SKAction.sequence([SKAction.move(to: CGPoint(x: size.width * 0.15, y: size.height * 0.3 + platformsArray[0].size.height * 0.25 + 50), duration: 0.5), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
         }
     }
     

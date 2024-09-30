@@ -44,6 +44,8 @@
 		9982FDB92CA5561500E5343A /* SelectedCoin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982FDB52CA5561500E5343A /* SelectedCoin+CoreDataClass.swift */; };
 		9982FDBA2CA5561500E5343A /* SelectedCoin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9982FDB62CA5561500E5343A /* SelectedCoin+CoreDataProperties.swift */; };
 		9982FDBC2CA586A900E5343A /* codemagic.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 9982FDBB2CA586A800E5343A /* codemagic.yaml */; };
+		99B3A99D2CAAE591007A3425 /* MapCoreData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B3A99B2CAAE591007A3425 /* MapCoreData+CoreDataClass.swift */; };
+		99B3A99E2CAAE591007A3425 /* MapCoreData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B3A99C2CAAE591007A3425 /* MapCoreData+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		9982FDB52CA5561500E5343A /* SelectedCoin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedCoin+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9982FDB62CA5561500E5343A /* SelectedCoin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectedCoin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9982FDBB2CA586A800E5343A /* codemagic.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = codemagic.yaml; sourceTree = "<group>"; };
+		99B3A99B2CAAE591007A3425 /* MapCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapCoreData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		99B3A99C2CAAE591007A3425 /* MapCoreData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapCoreData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +198,8 @@
 		9982FD9A2CA5554800E5343A /* Subclassew */ = {
 			isa = PBXGroup;
 			children = (
+				99B3A99B2CAAE591007A3425 /* MapCoreData+CoreDataClass.swift */,
+				99B3A99C2CAAE591007A3425 /* MapCoreData+CoreDataProperties.swift */,
 				9982FDB32CA5561500E5343A /* SelectedBall+CoreDataClass.swift */,
 				9982FDB42CA5561500E5343A /* SelectedBall+CoreDataProperties.swift */,
 				9982FDB52CA5561500E5343A /* SelectedCoin+CoreDataClass.swift */,
@@ -300,6 +306,8 @@
 				9982FD5B2CA1B39B00E5343A /* GameScene.swift in Sources */,
 				9982FD882CA40D3900E5343A /* GameScene2.swift in Sources */,
 				9982FD6E2CA1B47B00E5343A /* GameModel.swift in Sources */,
+				99B3A99D2CAAE591007A3425 /* MapCoreData+CoreDataClass.swift in Sources */,
+				99B3A99E2CAAE591007A3425 /* MapCoreData+CoreDataProperties.swift in Sources */,
 				9982FDAD2CA555B100E5343A /* Balance+CoreDataClass.swift in Sources */,
 				9982FDAE2CA555B100E5343A /* Balance+CoreDataProperties.swift in Sources */,
 				9982FDAF2CA555B100E5343A /* CoinAvailable+CoreDataClass.swift in Sources */,

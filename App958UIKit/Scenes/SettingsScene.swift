@@ -93,9 +93,24 @@ class SettingsScene: SKScene {
     }
     
     func actionSheet() {
-        guard let urlShare = URL(string: "https://apps.apple.com/app/botanopoly-the-gold-rush/id6717572419")  else { return } //TODO: - change link
-        let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
+//        guard let urlShare = URL(string: "https://apps.apple.com/app/botanopoly-the-gold-rush/id6717572419")  else { return }
+//        let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
+//        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
+
+        if let urlShare = URL(string: "https://apps.apple.com/app/botanopoly-the-gold-rush/id6717572419")
+        {
+            let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
+
+            var nav = UINavigationController(rootViewController: activityVC)
+            nav.modalPresentationStyle = UIModalPresentationStyle.popover
+            var popover = nav.popoverPresentationController as UIPopoverPresentationController?
+            activityVC.preferredContentSize = CGSizeMake(500,600)
+            popover?.sourceView = self.view
+            popover?.sourceRect = CGRectMake(0,0,0,0)
+
+            UIApplication.shared.windows.first?.rootViewController?.present(nav, animated: true, completion: nil)
+
+        }
     }
 }
 

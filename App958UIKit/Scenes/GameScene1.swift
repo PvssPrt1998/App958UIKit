@@ -2,17 +2,25 @@ import SpriteKit
 
 class GameScene1: SKScene {
     
-    deinit {
-        print("GameScene1deinit")
-    }
-    
     let gameModel: GameModel
+    
+    var map1 = SKSpriteNode(texture: SKTexture(imageNamed: Images.miniMap1.rawValue))
+    var map2 = SKSpriteNode(texture: SKTexture(imageNamed: Images.miniMap2.rawValue))
+    var map3 = SKSpriteNode(texture: SKTexture(imageNamed: Images.miniMap3.rawValue))
+    var map4 = SKSpriteNode(texture: SKTexture(imageNamed: Images.miniMap4.rawValue))
+    
+    var lock1 = SKSpriteNode(texture: SKTexture(imageNamed: Images.lock.rawValue))
+    var lock2 = SKSpriteNode(texture: SKTexture(imageNamed: Images.lock.rawValue))
+    var lock3 = SKSpriteNode(texture: SKTexture(imageNamed: Images.lock.rawValue))
+    var lock4 = SKSpriteNode(texture: SKTexture(imageNamed: Images.lock.rawValue))
     
     var bombSound = SKAction.playSoundFileNamed("bombExplosion.mp3", waitForCompletion: false)
     var wheelSound = SKAudioNode(fileNamed: "WheelSpinning.mp3")
     var loseSound = SKAction.playSoundFileNamed("wheelLose.mp3", waitForCompletion: false)
     var win = SKAction.playSoundFileNamed("platformAndWheelWin.mp3", waitForCompletion: false)
     var backgroundMusic: SKAudioNode = SKAudioNode(fileNamed: "backgroundSound.mp3")
+    
+    var map = SKSpriteNode(texture: SKTexture(imageNamed: Images.map.rawValue))
     
     private var twistButtonDisabled = true
     
@@ -70,7 +78,7 @@ class GameScene1: SKScene {
     
     var background = SKSpriteNode(imageNamed: Images.Map1.rawValue)
     
-    init(size: CGSize, gameModel: GameModel) {
+    init(size: CGSize, gameModel: GameModel, newGame: Bool = false) {
         self.gameModel = gameModel
         gameModel.hp = 3
         self.ball = SKSpriteNode(texture: SKTexture(imageNamed: gameModel.ballsArray[gameModel.selectedBallIndex].imageTitle))
@@ -145,10 +153,71 @@ class GameScene1: SKScene {
         configureHearts()
         configureAddCoinLabel()
         configureGameOver()
+        if !newGame {
+            configureMap()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureMap() {
+        shadowBackground.alpha = 1
+        map.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        map.zPosition = 6
+        
+        map1.zPosition = 7
+        map2.zPosition = 7
+        map3.zPosition = 7
+        map4.zPosition = 7
+        
+        map1.name = "miniMap1"
+        map2.name = "miniMap2"
+        map3.name = "miniMap3"
+        map4.name = "miniMap4"
+        
+        lock1.zPosition = 8
+        lock1.name = "lock1"
+        if gameModel.maps[0].available {
+            lock1.alpha = 0
+        }
+        lock2.zPosition = 8
+        lock2.name = "lock2"
+        if gameModel.maps[1].available {
+            lock2.alpha = 0
+        }
+        lock3.zPosition = 8
+        lock3.name = "lock3"
+        if gameModel.maps[2].available {
+            lock3.alpha = 0
+        }
+        lock4.zPosition = 8
+        lock4.name = "lock4"
+        if gameModel.maps[3].available {
+            lock4.alpha = 0
+        }
+        
+        map1.addChild(lock1)
+        map2.addChild(lock2)
+        map3.addChild(lock3)
+        map4.addChild(lock4)
+        
+        map1.position = CGPoint(x: -map.size.width * 0.17, y: map.size.height * 0.15)
+        map2.position = CGPoint(x: map.size.width * 0.17, y: map.size.height * 0.15)
+        map3.position = CGPoint(x: -map.size.width * 0.17, y: -map.size.height * 0.15)
+        map4.position = CGPoint(x: map.size.width * 0.17, y: -map.size.height * 0.15)
+        
+        map.addChild(map1)
+        map.addChild(map2)
+        map.addChild(map3)
+        map.addChild(map4)
+        addChild(map)
+    }
+    
+    private func hideMap() {
+        shadowBackground.alpha = 0
+        map.alpha = 0
     }
     
     private func configureGameOver() {
@@ -636,6 +705,34 @@ class GameScene1: SKScene {
         let location = firstTouch.location(in: self)
         
         let node = self.atPoint(location)
+        
+        if node.name == "miniMap1"{
+            hideMap()
+        }
+        
+        if node.name == "miniMap2" && gameModel.maps[1].available {
+            let transition = SKTransition.moveIn(with: .down, duration: 0.2)
+            let menuScene = GameScene2(size: self.size, gameModel: self.gameModel)
+            menuScene.scaleMode = .aspectFill
+            guard self.scene != nil else { return }
+            self.scene!.view?.presentScene(menuScene, transition: transition)
+        }
+        
+        if node.name == "miniMap3" && gameModel.maps[2].available {
+            let transition = SKTransition.moveIn(with: .down, duration: 0.2)
+            let menuScene = GameScene3(size: self.size, gameModel: self.gameModel)
+            menuScene.scaleMode = .aspectFill
+            guard self.scene != nil else { return }
+            self.scene!.view?.presentScene(menuScene, transition: transition)
+        }
+        
+        if node.name == "miniMap4" && gameModel.maps[3].available {
+            let transition = SKTransition.moveIn(with: .down, duration: 0.2)
+            let menuScene = GameScene4(size: self.size, gameModel: self.gameModel)
+            menuScene.scaleMode = .aspectFill
+            guard self.scene != nil else { return }
+            self.scene!.view?.presentScene(menuScene, transition: transition)
+        }
         
         if !twistButtonDisabled {
             if node.name == "TwistButton" {

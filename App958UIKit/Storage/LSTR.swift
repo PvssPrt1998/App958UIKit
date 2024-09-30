@@ -5,6 +5,36 @@ final class Lstr {
     
     lazy var coreDataStack = CoreDataStack(modelName: modelName)
     
+    func createOrEditMap(_ map: Map) {
+        do {
+            let maps = try coreDataStack.managedContext.fetch(MapCoreData.fetchRequest())
+            var founded = false
+            maps.forEach { mapC in
+                if mapC.id == map.id {
+                    mapC.available = map.available
+                    founded = true
+                }
+            }
+            if !founded {
+                let mapCoreData = MapCoreData(context: coreDataStack.managedContext)
+                mapCoreData.id = Int32(map.id)
+                mapCoreData.available = map.available
+            }
+            coreDataStack.saveContext()
+        } catch let error as NSError {
+            print("Unresolved error \(error), \(error.userInfo)")
+        }
+    }
+    
+    func fetchMaps() throws -> Array<(Int, Bool)> {
+        var array: Array<(Int,Bool)> = []
+        let maps = try coreDataStack.managedContext.fetch(MapCoreData.fetchRequest())
+        maps.forEach { mapC in
+            array.append((Int(mapC.id), mapC.available))
+        }
+        return array
+    }
+    
     func createOrEditSelectedBall(_ id: Int) {
         do {
             let selectedBalls = try coreDataStack.managedContext.fetch(SelectedBall.fetchRequest())
